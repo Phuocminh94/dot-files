@@ -1,0 +1,5 @@
+# Shortcuts
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias nvim="neovim"
