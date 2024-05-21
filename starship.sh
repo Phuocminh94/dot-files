@@ -5,11 +5,11 @@ if [ -x "/opt/homebrew/bin/brew" ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]
 fi
 
 # Define the path for starship settings on macOS
-STARSHIP_PATH="${HOME}/.config/"
+STARSHIP_PATH="${HOME}/.config/starship.toml"
 
 if [ -f "$STARSHIP_PATH" ]; then
   echo "starship.toml already exists"
 else
-  cp "${HOME}/dotfiles/settings/starship.toml" "$STARSHIP_PATH"
-  echo "starship.toml copied to $STARSHIP_PATH"
+  ln -sf "${HOME}/dotfiles/settings/starship.toml" "$STARSHIP_PATH"
+  echo "starship.toml linked to $STARSHIP_PATH"
 fi

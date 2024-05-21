@@ -7,9 +7,9 @@ echo "Press enter to continue..."
 read
 
 # Set scroll as traditional instead of natural
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && killall Finder
+defaults write -g com.apple.swipescrolldirection -boolean NO
 
-# Get the absolute path to the image
+# The absolute path to my selected image
 IMAGE_PATH="${HOME}/dotfiles/settings/Desktop.png"
 
 # AppleScript command to set the desktop background
@@ -23,3 +23,6 @@ tell application "System Events"
     end repeat
 end tell
 EOF
+
+# Run further script
+zsh "./mac.sh"

@@ -3,13 +3,12 @@ if [ -x "/opt/homebrew/bin/brew" ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]
     export PATH="/opt/homebrew/bin:$PATH"
 fi
 
-# Define the target directory for Neovim on macOS
 NVIM_DIR="$HOME/.config/nvim"
 
 if [ -d "$NVIM_DIR" ]; then
   echo "Config directory for Neovim already exists"
 else
   mkdir -p "$NVIM_DIR"
-  git clone https://github.com/Phuocminh94/Neovim.git "$NVIM_DIR"
-  echo "config copied to $NVIM_DIR"
+  ln -sf "${HOME}/dotfiles/nvim" "$NVIM_DIR"
+  echo "nvim config linked to $NVIM_DIR"
 fi

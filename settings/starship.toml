@@ -1,6 +1,7 @@
+
 ## FIRST LINE/ROW: Info & Status
 [username]
-format = " [╭╴](bold red)[$user]($style)@"
+format = " [╭╴](bold red)[$user]($style) in "
 style_user = "bold red"
 style_root = "bold red"
 show_always = true
@@ -11,7 +12,7 @@ format = "[$hostname]($style) in "
 style = "bold red"
 trim_at = "-"
 ssh_only = false
-disabled = false
+disabled = true
 
 # Third param
 [directory]
@@ -49,9 +50,9 @@ disabled = false
 
 # Prompt: param 2 └─
 [character]
-success_symbol = " [╰─λ](bold red)"
-error_symbol = " [╰─λ](bold red)"
-use_symbol_for_status = true
+success_symbol = " [╰─ ](bold red)"
+error_symbol = " [╰─ ](bold red)"
+# use_symbol_for_status = true
 
 [aws]
 symbol = " "
@@ -62,8 +63,14 @@ symbol = " "
 [dart]
 symbol = " "
 
-[docker]
-symbol = " "
+[docker_context]
+symbol = "🐳 "
+format = "via [$symbol$context]($style) "
+style = "blue italic bold"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = false
 
 [elixir]
 symbol = " "
@@ -128,9 +135,9 @@ symbol = "ﯣ "
 # success_symbol = "[>](120)"
 # error_symbol = "[>](120)"
 #
-# # [os]
-# # format ='[$symbol](bold yellow)'
-# # disabled = false
+# [os]
+# format ='[$symbol](bold yellow)'
+# disabled = false
 #
 # # [os.symbols]
 # # Macos = ' '

@@ -12,11 +12,15 @@ extensions=(
     ms-python.vscode-pylance
     ms-python.debugpy
     ms-toolsai.jupyter
+    ms-python.black-formatter
     darianmorat.darian-theme
+    CamilaMartinezBedoya.pro-hacker-theme
     vscodevim.vim
+    miguelsolorio.fluent-icons
     naumovs.color-highlight
     formulahendry.code-runner
     esbenp.prettier-vscode
+    albert.TabOut
 )
 
 # Get a list of all currently installed extensions.
@@ -53,6 +57,6 @@ fi
 
 # Open VS Code to sign-in to extensions
 code .
-# echo "Login to extensions (Copilot, Grammarly, etc) within VS Code."
+
 echo "Press enter to continue..."
 read

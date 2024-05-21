@@ -22,8 +22,6 @@ If you choose to run these scripts, please do so with **EXTREME CAUTION**. It's 
 
 By using these scripts, you acknowledge and accept the risk of potential data loss or system alteration. Proceed at your own risk.
 
-## Getting Started
-
 ### Prerequisites
 
 - macOS (The scripts are tailored for macOS)
@@ -38,7 +36,9 @@ By using these scripts, you acknowledge and accept the risk of potential data lo
    ```sh
    cd ~/dotfiles
    ```
-3. Run the installation script:
+
+3. Check permission for each `.sh` file using `ls -la`. Possibly `chmod +x` for each file
+4. Run the installation script:
    ```sh
    ./install.sh
    ```

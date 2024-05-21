@@ -27,7 +27,7 @@ brew upgrade
 brew upgrade --cask
 brew cleanup
 
-# Define an array of packages to install using Homebrew.
+# Packages to install using Homebrew.
 packages=(
     "python"
     "bash"
@@ -36,11 +36,14 @@ packages=(
     "lazygit"
     "tree"
     "node"
-    "neovim@0.9.5"
+    "neovim"
     "starship"
+    "ripgrep"
+    "yarn" # for markdown preview nvim
+    # "r"
 )
 
-# Loop over the array to install each application.
+# Install each application.
 for package in "${packages[@]}"; do
     if brew list --formula | grep -q "^$package\$"; then
         echo "$package is already installed. Skipping..."
@@ -71,12 +74,22 @@ $(brew --prefix)/bin/git config --global user.email "$git_user_email"
 # Install Prettier, which I use in VsCode
 $(brew --prefix)/bin/npm install --global prettier
 
-# Define an array of applications to install using Homebrew Cask.
+# Applications to install using Homebrew Cask.
 apps=(
     "google-chrome"
+    "google-drive"
     "iterm2"
     "visual-studio-code"
     "rectangle"
+    "macs-fan-control"
+    "messenger"
+    
+    # further packages
+    # "teamviewer"
+    # "anaconda"
+    # "microsoft-office"
+    # "docker"
+    # "rstudio"
 )
 
 # Loop over the array to install each application.
@@ -104,9 +117,9 @@ else
     brew install --cask "$font_name"
 fi
 
-# Once font is installed, Import your Terminal Profile
-echo "Import your terminal settings..."
-echo "Terminal -> Settings -> Profiles -> Import..."
+# Once font is installed, Import my Terminal Profile
+echo "Import your iTerm2 settings..."
+echo "iTerm2 -> Settings -> Profiles -> Import..."
 echo "Import from ${HOME}/dotfiles/settings/iterm2.json"
 echo "Press enter to continue..."
 read
@@ -117,10 +130,16 @@ brew upgrade
 brew upgrade --cask
 brew cleanup
 
-echo "Sign in to Google Chrome. Press enter to continue..."
+echo "Sign in to Google Chrome & Google Drive. Press enter to continue..."
+read
+
+echo "Sign in to Facebook Messenger. Press enter to continue..."
 read
 
 echo "Open Rectangle and give it necessary permissions. Press enter to continue..."
+read
+
+echo "Open Mac Fan Control and config it manually. Press enter to continue..."
 read
 
 echo "Import your Rectangle settings located in ~/dotfiles/settings/RectangleConfig.json. Press enter to continue..."
