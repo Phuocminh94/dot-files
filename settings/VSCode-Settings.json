@@ -1,86 +1,77 @@
 {
-  "workbench.startupEditor": "none",
-  "editor.fontFamily": "JetBrains Mono, Fira Code, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 16,
-  "editor.tabSize": 2,
-  "terminal.integrated.fontFamily": "JetBrains Mono",
-  "terminal.integrated.defaultProfile.osx": "zsh",
-  "terminal.external.osxExec": "iTerm.app",
-  "workbench.productIconTheme": "fluent-icons",
-  "workbench.layoutControl.enabled": false,
-  "explorer.openEditors.visible": 1,
-  "explorer.autoReveal": false,
-  "editor.minimap.enabled": false,
-  "editor.minimap.renderCharacters": false,
-  "editor.minimap.size": "proportional",
-  "workbench.tree.indent": 12,
-  "workbench.tree.renderIndentGuides": "none",
-  "breadcrumbs.enabled": false,
-  "editor.overviewRulerBorder": false,
-  "editor.padding.bottom": 14,
-  "editor.padding.top": 14,
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.codeLens": false,
-  "editor.glyphMargin": false,
-  "editor.foldingHighlight": false,
-  "editor.renderLineHighlight": "none",
-  "editor.guides.indentation": false,
-  "editor.guides.highlightActiveIndentation": false,
-  "editor.matchBrackets": "near",
-  "editor.guides.highlightActiveBracketPair": false,
-  "editor.parameterHints.enabled": false,
-  "editor.inlayHints.enabled": "off",
-  "editor.smoothScrolling": true,
-  "explorer.compactFolders": false,
-  "window.autoDetectHighContrast": false,
-  "zenMode.fullScreen": false,
-  "editor.lineHeight": 24,
-  "workbench.activityBar.location": "top",
-  "workbench.sideBar.location": "left",
-  "workbench.editor.tabActionCloseVisibility": false,
-  "window.titleBarStyle": "native",
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.cursorBlinking": "phase",
-  "editor.cursorSmoothCaretAnimation": "on",
-  "update.mode": "manual",
-  "notebook.editorOptionsCustomizations": {
-    "editor.tabSize": 4,
-    "editor.indentSize": 4,
-    "editor.insertSpaces": false
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "python.defaultInterpreterPath": "/opt/anaconda3/envs/ds/bin/python",
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true
   },
-  "workbench.colorTheme": "Darian Theme",
-  "terminal.integrated.inheritEnv": false,
+  "breadcrumbs.enabled": false,
+  "editor.codeLens": false,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.foldingHighlight": false,
+  "editor.fontFamily": "JetBrains Mono, Fira Code, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.glyphMargin": false,
+  "editor.guides.highlightActiveBracketPair": false,
+  "editor.guides.highlightActiveIndentation": false,
+  "editor.guides.indentation": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.inlayHints.enabled": "off",
+  "editor.lineHeight": 24,
   // =================
   // VIM CONFIGURATION
   // =================
   "editor.lineNumbers": "relative",
+  "editor.matchBrackets": "near",
+  "editor.minimap.enabled": false,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.size": "proportional",
+  "editor.overviewRulerBorder": false,
+  "editor.padding.bottom": 14,
+  "editor.padding.top": 14,
+  "editor.parameterHints.enabled": false,
+  "editor.renderLineHighlight": "none",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.smoothScrolling": true,
+  "editor.tabSize": 2,
+  "explorer.autoReveal": false,
+  "explorer.compactFolders": false,
+  "explorer.openEditors.visible": 1,
+  "git.openRepositoryInParentFolders": "always",
+  "github.copilot.editor.enableAutoCompletions": true,
+  "notebook.editorOptionsCustomizations": {
+    "editor.indentSize": 4,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+  "python.defaultInterpreterPath": "/opt/homebrew/anaconda3/envs/DS/bin/python",
+  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+  "terminal.integrated.fontSize": 19,
+  "terminal.integrated.inheritEnv": false,
+  "update.mode": "manual",
   "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.leader": "space",
-  "vim.hlsearch": true,
-  "vim.highlightedyank.enable": true,
-  "vim.highlightedyank.duration": 150,
   "vim.highlightedyank.color": "rgba(241, 48, 48, 0)",
+  "vim.highlightedyank.duration": 150,
+  "vim.highlightedyank.enable": true,
   "vim.highlightedyank.textColor": "white",
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
   "vim.insertModeKeyBindings": [
     {
+      "after": [
+        "<Esc>"
+      ],
       "before": [
         "j",
         "k"
-      ],
-      "after": [
-        "<Esc>"
       ]
     }
   ],
+  "vim.leader": "space",
   "vim.normalModeKeyBindingsNonRecursive": [
     // FORMAT DOCUMENT
     {
@@ -113,6 +104,50 @@
         "workbench.action.focusActiveEditorGroup"
       ]
     },
+    {
+      "before": [
+        "leader",
+        "x"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "f",
+        "f"
+      ],
+      "commands": [
+        "find-it-faster.findFiles"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "f",
+        "g"
+      ],
+      "commands": [
+        "find-it-faster.findWithinFiles"
+      ]
+    },
   ],
-  "git.openRepositoryInParentFolders": "always",
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+  "window.autoDetectHighContrast": false,
+  "window.titleBarStyle": "native",
+  "workbench.activityBar.location": "top",
+  "workbench.colorTheme": "Pro Hacker Theme",
+  "workbench.editor.tabActionCloseVisibility": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.productIconTheme": "fluent-icons",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "none",
+  "workbench.statusBar.visible": false,
+  "workbench.tree.indent": 12,
+  "workbench.tree.renderIndentGuides": "none",
+  "zenMode.fullScreen": false,
+  "editor.accessibilitySupport": "off"
 }

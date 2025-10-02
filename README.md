@@ -1,60 +1,121 @@
 # Development Environment Setup
 
-This repository contains scripts and configuration files to set up a development environment for macOS. It's tailored for software development, focusing on a clean, minimal, and efficient setup.
+This repository contains scripts and configuration files for setting up a
+development environment on **macOS** (with partial Linux support planned).  
+It’s designed for my own workflow: clean, minimal, and efficient — with all
+common tools automated.
+
+---
+
+## ⚠️ Important Disclaimer
+
+These scripts are **highly opinionated** and tailored to **my personal setup**.  
+If you choose to run them:
+
+- They will **modify your system**, including shell configs, default shell, Dock
+  layout, and app installations.
+- Some changes may be **irreversible** without reinstalling your OS.
+- Backups are created **once per run** with timestamps, but repeated runs may
+  overwrite configs.
+- Review the scripts before running them to fully understand the changes.
+
+If you like this setup, I recommend **forking** the repo and customizing it for
+your needs rather than running my scripts unmodified.
+
+Proceed at your own risk.
+
+---
 
 ## Overview
 
-The setup includes automated scripts for installing essential software, configuring Bash and Zsh shells, and setting Visual Studio Code editors. This guide will help you replicate my development environment on your machine if you desire to do so.
+The setup is split into modular scripts so you can run only what you need:
 
-## Important Note Before Installation
+- **Symlinks:** Links dotfiles (`.zshrc`, `.bashrc`, etc.) into `$HOME`
+- **macOS config:** Finder, Dock, Hot Corners, wallpaper, etc.
+- **Homebrew:** Installs brew, formulas, casks, and fonts
+- **VS Code:** Installs extensions + links custom settings/keybindings
+- **Starship:** Links `starship.toml` config
+- **Neovim:** Links config from `dotfiles/nvim` to `~/.config/nvim`
+- **Dock:** Clears and rebuilds Dock layout with my apps/folders
 
-**WARNING:** The configurations and scripts in this repository are **HIGHLY PERSONALIZED** to my own preferences and workflows. If you decide to use them, please be aware that they will **MODIFY** your current system, potentially making some changes that are **IRREVERSIBLE** without a fresh installation of your operating system.
+Most scripts support a **`--dry-run`** mode so you can preview changes before applying.
 
-Furthermore, while I strive to backup files wherever possible, I cannot guarantee that all files are backed up. The backup mechanism is designed to backup SOME files **ONCE**. If the script is run more than once, the initial backups will be **OVERWRITTEN**, potentially resulting in loss of data. While I could implement timestamped backups to preserve multiple versions, this setup is optimized for my personal use, and a single backup suffices for me.
+---
 
-If you would like a development environment similar to mine, I highly encourage you to fork this repository and make your own personalized changes to these scripts instead of running them exactly as I have them written for myself.
+## Prerequisites
 
-A less serious (but potentially annoying) change it will make is setting the Desktop background to the image I use in my tutorials. This is the script I use to set up machines I will be recording on, after all.
+- macOS (tested on Apple Silicon)
+- [Xcode Command Line Tools](https://developer.apple.com/download/all/)  
+  (`xcode-select --install`)
 
-I likely won't accept pull requests unless they align closely with my personal preferences and the way I use my development environment. But if there are some obvious errors in my scripts then corrections would be welcome!
+Linux users: some scripts may work (e.g. symlinks, starship, neovim), but
+Homebrew and macOS-specific scripts will be skipped.
 
-If you choose to run these scripts, please do so with **EXTREME CAUTION**. It's recommended to review the scripts and understand the changes they will make to your system before proceeding.
+---
 
-By using these scripts, you acknowledge and accept the risk of potential data loss or system alteration. Proceed at your own risk.
+## Installation
 
-### Prerequisites
+1. Clone the repository into your home directory:
 
-- macOS (The scripts are tailored for macOS)
-
-### Installation
-
-1. Clone the repository to your local machine:
    ```sh
    git clone https://github.com/Phuocminh94/dot-files.git ~/dotfiles
-   ```
-2. Navigate to the `dotfiles` directory:
-   ```sh
    cd ~/dotfiles
    ```
 
-3. Check permission for each `.sh` file using `ls -la`. Possibly `chmod +x` for each file
-4. Run the installation script:
-   ```sh
-   ./install.sh
-   ```
+2.	Ensure scripts are executable:
 
-This script will:
+    ```sh
+    chmod +x *.sh
+    ```
 
-- Create symlinks for dotfiles (`.bashrc`, `.zshrc`, etc.)
-- Run macOS-specific configurations
-- Install Homebrew packages and casks
-- Configure Visual Studio Code
+3.	Run the bootstrap installer:
+    ```sh
+    ./bootstrap.zsh
+    ```
+
+This will:
+
+- Symlink dotfiles into your home directory
+
+- Run each setup script in sequence:
+
+    - macOS.sh
+
+	- brew.sh
+
+	- vscode.sh
+
+	- starship.sh
+
+	- neovim.sh
+
+	- dock.sh
 
 ## Configuration Files
 
-- `.bashrc` & `.zshrc`: Shell configuration files for Bash and Zsh.
-- `.shared_prompt`: Custom prompt setup used by both `.bash_prompt` & `.zprompt`
-- `.bash_prompt` & `.zprompt`: Custom prompt setup for Bash and Zsh.
-- `.bash_profile: Setting system-wide environment variables
-- `.aliases`: Aliases for common commands. Some are personalized to my machines specifically (e.g. the 'yt' alias opening my YouTube Scripts')
-- `settings/`: Directory containing editor settings and themes for Sublime Text and Visual Studio Code.
+- `.zshrc / .bashrc` – Shell startup files
+- `.bash_profile / .zprofile` – Environment variables
+- `.aliases` – Command shortcuts (personalized)
+- `.shared_prompt` – Shared prompt style
+- `.bash_prompt / .zprompt` – Prompt configs
+- settings/ – Editor/terminal configs:
+	- VS Code settings & keybindings
+	- Starship prompt config
+	- iTerm2 and Rectangle JSON profiles
+
+## Post-Install Manual Steps
+
+Some (macOS) apps require manual setup:
+
+- Import `iTerm2` profile: `~/dotfiles/settings/iTerm2.json
+
+- Import `Rectangle` config: `~/dotfiles/settings/RectangleConfig.json'
+
+- Sign in to: Chrome, Google Drive
+
+- Configure Macs Fan Control manually
+
+## Contributing
+
+Pull requests are not expected, since this repo is for my personal setup.
+However, I welcome corrections to obvious errors or portability improvements. 

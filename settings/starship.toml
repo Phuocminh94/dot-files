@@ -1,3 +1,4 @@
+command_timeout = 5000 # This is correct.
 
 ## FIRST LINE/ROW: Info & Status
 [username]
@@ -5,6 +6,7 @@ format = " [╭╴](bold red)[$user]($style) in "
 style_user = "bold red"
 style_root = "bold red"
 show_always = true
+
 
 # Second param
 [hostname]
@@ -14,11 +16,13 @@ trim_at = "-"
 ssh_only = false
 disabled = true
 
+
 # Third param
 [directory]
 style = "bold blue"
 truncation_length = 0
 truncate_to_repo = true
+
 
 # Before all the version info (python, nodejs, php, etc.)
 [git_branch]
@@ -27,6 +31,7 @@ style = "blue italic bold"
 format = "on [$symbol$branch]($style) "
 truncation_length = 10
 truncation_symbol = ".../"
+
 
 [git_status]
 format = '[\($all_status$ahead_behind\)](bold italic blue) '
@@ -42,11 +47,13 @@ staged = '[+$count](blue)'
 renamed = "󰖷 "
 deleted = " "
 
+
 # Last param in the first line/row
 [cmd_duration]
-min_time = 1
+min_time = 3
 format = "took [$duration]($style)"
-disabled = false
+disabled = true
+
 
 # Prompt: param 2 └─
 [character]
@@ -54,14 +61,15 @@ success_symbol = " [╰─ ](bold red)"
 error_symbol = " [╰─ ](bold red)"
 # use_symbol_for_status = true
 
+
 [aws]
 symbol = " "
 
+
 [conda]
 symbol = " "
+disabled = false
 
-[dart]
-symbol = " "
 
 [docker_context]
 symbol = "🐳 "
@@ -72,59 +80,70 @@ detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
 disabled = false
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[lua]
-disabled = true
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
-[package]
-symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
 
 [python]
 symbol = " "
 
-[ruby]
-symbol = " "
 
-[rust]
-symbol = " "
+[rlang]
+symbol = "  "
 
-[swift]
-symbol = "ﯣ "
+
+
+# [dart]
+# symbol = " "
+#
+# [elixir]
+# symbol = " "
+#
+# [elm]
+# symbol = " "
+#
+# [golang]
+# symbol = " "
+#
+# [haskell]
+# symbol = " "
+#
+# [hg_branch]
+# symbol = " "
+#
+# [java]
+# symbol = " "
+#
+# [julia]
+# symbol = " "
+
+# [lua]
+# disabled = true
+#
+# [nim]
+# symbol = " "
+#
+# [nix_shell]
+# symbol = " "
+#
+# [nodejs]
+# symbol = " "
+#
+# [package]
+# symbol = " "
+
+# [perl]
+# symbol = " "
+
+# [php]
+# symbol = " "
+
+
+# [ruby]
+# symbol = " "
+#
+# [rust]
+# symbol = " "
+#
+# [swift]
+# symbol = "ﯣ "
 
 
 # format = """\

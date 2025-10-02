@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-ssh-keygen -t rsa -b 4096 -C "buiphuocminh94a@gmail.com"
+ssh-keygen -t rsa -b 4096 -C "buiphuocminh94@gmail.com"
 
 cd ~/.ssh
 

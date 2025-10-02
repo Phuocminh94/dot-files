@@ -1,43 +1,69 @@
 #!/usr/bin/env zsh
-############################
-# This script creates symlinks from the home directory to any desired dotfiles in $HOME/dotfiles
-# And also installs MacOS Software
-# And also installs Homebrew Packages and Casks (Apps)
-# And also sets up VS Code
-############################
+# ==============================================================================
+# Dotfiles bootstrap:
+#   - Symlinks dotfiles from ~/dotfiles → $HOME
+#   - Runs setup scripts: macOS, brew, VS Code, starship, Neovim, Dock
+# Usage:
+#   ./bootstrap.zsh [--dry-run]
+# ==============================================================================
 
-# dotfiles directory
-dotfiledir="${HOME}/dotfiles"
+set -euo pipefail
 
-# list of files/folders to symlink in ${homedir}
-files=(zshrc zprofile bashrc bash_profile aliases hushlogin)
-
-# change to the dotfiles directory
-echo "Changing to the ${dotfiledir} directory"
-cd "${dotfiledir}" || exit
-
-# create symlinks (will overwrite old dotfiles)
-for file in "${files[@]}"; do
-    echo "Creating symlink to $file in home directory."
-    ln -sf "${dotfiledir}/.${file}" "${HOME}/.${file}"
+# ------------------------------ flags & helpers ------------------------------
+DRY_RUN=false
+while (( $# )); do
+  case "$1" in
+    -n|--dry-run) DRY_RUN=true ;;
+    *) echo "Unknown option: $1" >&2; exit 2 ;;
+  esac
+  shift
 done
 
-# Run the MacOS Script
-./macOS.sh
+run() { $DRY_RUN && echo "[dry-run] $*" || eval "$*"; }
+log(){ print -P "%F{cyan}==>%f $*"; }
+warn(){ print -P "%F{yellow}WARN:%f $*"; }
 
-# Run the Homebrew Script
-./brew.sh
+# ------------------------------ config ---------------------------------------
+DOTFILES_DIR="${HOME}/dotfiles"
+FILES=( zshrc zprofile bashrc bash_profile aliases hushlogin )
+SCRIPTS=( macOS.sh brew.sh vscode.sh starship.sh neovim.sh dock.sh )
 
-# Run VS Code Script
-./vscode.sh
+# ------------------------------ symlinks -------------------------------------
+log "Changing to ${DOTFILES_DIR}"
+cd "${DOTFILES_DIR}" || { warn "dotfiles directory not found"; exit 1; }
 
-# Run Starship Script
-./starship.sh
+for file in "${FILES[@]}"; do
+  src="${DOTFILES_DIR}/.${file}"
+  dst="${HOME}/.${file}"
 
-# Run Neovim Script
-./neovim.sh
+  if [[ ! -e "$src" ]]; then
+    warn "Source missing: $src (skipping)"
+    continue
+  fi
 
-# Run Dock Script
-./dock.sh
+  if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
+    log "Symlink already correct: $dst"
+  else
+    if [[ -e "$dst" ]]; then
+      TS="$(date +%Y%m%d-%H%M%S)"
+      backup="${dst}.backup-${TS}"
+      log "Backing up $dst → $backup"
+      run "mv \"$dst\" \"$backup\""
+    fi
+    log "Linking $src → $dst"
+    run "ln -sfn \"$src\" \"$dst\""
+  fi
+done
 
-echo "Installation Complete!"
+# ------------------------------ run scripts ----------------------------------
+for script in "${SCRIPTS[@]}"; do
+  if [[ -x "$DOTFILES_DIR/$script" ]]; then
+    log "Running $script"
+    $DRY_RUN && echo "[dry-run] $DOTFILES_DIR/$script" || "$DOTFILES_DIR/$script"
+  else
+    warn "Script not found or not executable: $script"
+  fi
+done
+
+log "Installation complete!"
+$DRY_RUN && warn "This was a dry run; no changes were applied."

@@ -1,0 +1,12 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\nunmap g$\nunmap gT\nunmap gt\nunmap yf\nunmap b\nunmap <f8>\nunmap <a-p>\nunmap <a-s-c>\nunmap <a-c>\nunmap <a-t>\nunmap zH\nunmap zL\nmap P togglePinTab\nmap t createTab\nmap cr closeTabsOnRight\nmap cl closeTabsOnLeft\nmap ca closeOtherTabs\nmap g9 lastTab\nmap af LinkHints.activateFocus\nmap z. scrollToRight\nmap z, scrollToLeft\nmap K goForward\nmap J goBack\nmap H previousTab\nmap L nextTab\nmap yl LinkHints.activateModeToCopyLinkUrl",
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nb: https://www.bing.com/search?q=%s Bing\ny: https://www.youtube.com/results?search_query=%s Youtube\n\n\n\n# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#\n# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\n# gm: https://www.google.com/maps?q=%s Google maps\n# b: https://www.bing.com/search?q=%s Bing",
+  "settingsVersion": "2.1.2",
+  "userDefinedLinkHintCss": "/* Change the font, text color, and background color of the link hints */\ndiv > .vimiumHintMarker span {\n  font-family: -apple-system, BlinkMacSystemFont, sans-serif;\n  font-size: 10px;\n  color: #1d1d1e;\n  background-color: None;\n}\n\n/* Add a box shadow and border radius to the link hints */\ndiv > .vimiumHintMarker {\n  box-shadow: 0px 0px 12px #a9b665;\n  border-radius: 2px;\n}",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https://notebooks.gesis.org/binder/jupyter/user/manimcommunity-jupyter_examples-6422paud/notebooks/Untitled.ipynb?kernel_name=python3"
+    }
+  ]
+}
