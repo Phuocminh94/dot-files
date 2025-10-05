@@ -1,4 +1,4 @@
-command_timeout = 5000 # This is correct.
+command_timeout = 5000
 
 ## FIRST LINE/ROW: Info & Status
 [username]
@@ -20,7 +20,7 @@ disabled = true
 # Third param
 [directory]
 style = "bold blue"
-truncation_length = 0
+truncation_length = 3
 truncate_to_repo = true
 
 
