@@ -23,12 +23,15 @@ kde_pkgs=(
   bluez bluez-utils                 # bluetooth core + CLI tools
   bluez-qt bluedevil kdeconnect     # KDE Bluetooth support (Qt bindings + tray/applet + phone integration)
   networkmanager plasma-nm          # network management daemon + KDE applet
+  kio-gdrive                        # google drive client
 )
 
 util_pkgs=(
   htop tree        # system + directory tools
-  alacritty kitty  # GPU terminals
   tmux             # terminal multiplexer
+  openbsd-netcat
+  starship
+  ripgrep
 )
 
 lang_pkgs=(
@@ -45,7 +48,7 @@ install_group() {
 
 # install_group "Core Packages" $core_pkgs
 # install_group "KDE Essentials" $kde_pkgs
-# install_group "Utilities" $util_pkgs
-install_group "Lang" $lang_pkgs
+install_group "Utilities" $util_pkgs
+# install_group "Lang" $lang_pkgs
 
 echo "✅ All done!"

@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 # ==============================================================================
-# Dotfiles bootstrap:
+# Dotfiles bootstrap (platform-aware):
 #   - Symlinks dotfiles from ~/dotfiles → $HOME
-#   - Runs setup scripts: macOS, brew, VS Code, starship, Neovim, Dock
+#   - Runs setup scripts depending on OS (macOS/Linux)
 # Usage:
 #   ./bootstrap.zsh [--dry-run]
 # ==============================================================================
@@ -22,15 +22,48 @@ done
 run() { $DRY_RUN && echo "[dry-run] $*" || eval "$*"; }
 log(){ print -P "%F{cyan}==>%f $*"; }
 warn(){ print -P "%F{yellow}WARN:%f $*"; }
+err(){ print -P "%F{red}ERROR:%f $*"; exit 1; }
+
+# ------------------------------ OS detection ---------------------------------
+OS="$(uname -s)"
+IS_MACOS=false
+IS_LINUX=false
+case "$OS" in
+  Darwin) IS_MACOS=true ;;
+  Linux)  IS_LINUX=true ;;
+  *) warn "Unsupported OS: $OS";;
+esac
 
 # ------------------------------ config ---------------------------------------
 DOTFILES_DIR="${HOME}/dotfiles"
-FILES=( zshrc zprofile bashrc bash_profile aliases hushlogin )
-SCRIPTS=( macOS.sh brew.sh vscode.sh starship.sh neovim.sh dock.sh )
+
+# Common files to be symlinked on both platforms
+COMMON_FILES=( zshrc zprofile bashrc bash_profile aliases hushlogin )
+
+# Add OS-specific files here (optional)
+MAC_FILES=( )     # e.g. "yabairc"
+LINUX_FILES=( )   # e.g. "xprofile"
+
+# Merge file lists
+FILES=( "${COMMON_FILES[@]}" )
+$IS_MACOS && FILES+=( "${MAC_FILES[@]}" )
+$IS_LINUX && FILES+=( "${LINUX_FILES[@]}" )
+
+# Script sets per platform
+COMMON_SCRIPTS=( starship.sh neovim.sh )
+MAC_SCRIPTS=( mac.sh brew.sh dock.sh )
+LINUX_SCRIPTS=( arch.sh )
+
+SCRIPTS=( "${COMMON_SCRIPTS[@]}" )
+$IS_MACOS && SCRIPTS+=( "${MAC_SCRIPTS[@]}" )
+$IS_LINUX && SCRIPTS+=( "${LINUX_SCRIPTS[@]}" )
+
+# ------------------------------ sanity checks --------------------------------
+[[ -d "$DOTFILES_DIR" ]] || err "Dotfiles directory not found: $DOTFILES_DIR"
 
 # ------------------------------ symlinks -------------------------------------
 log "Changing to ${DOTFILES_DIR}"
-cd "${DOTFILES_DIR}" || { warn "dotfiles directory not found"; exit 1; }
+cd "${DOTFILES_DIR}"
 
 for file in "${FILES[@]}"; do
   src="${DOTFILES_DIR}/.${file}"
@@ -43,25 +76,30 @@ for file in "${FILES[@]}"; do
 
   if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
     log "Symlink already correct: $dst"
-  else
-    if [[ -e "$dst" ]]; then
-      TS="$(date +%Y%m%d-%H%M%S)"
-      backup="${dst}.backup-${TS}"
-      log "Backing up $dst → $backup"
-      run "mv \"$dst\" \"$backup\""
-    fi
-    log "Linking $src → $dst"
-    run "ln -sfn \"$src\" \"$dst\""
+    continue
   fi
+
+  if [[ -e "$dst" || -L "$dst" ]]; then
+    TS="$(date +%Y%m%d-%H%M%S)"
+    backup="${dst}.backup-${TS}"
+    log "Backing up $dst → $backup"
+    run "mv \"$dst\" \"$backup\""
+  fi
+
+  log "Linking $src → $dst"
+  run "ln -sfn \"$src\" \"$dst\""
 done
 
 # ------------------------------ run scripts ----------------------------------
 for script in "${SCRIPTS[@]}"; do
-  if [[ -x "$DOTFILES_DIR/$script" ]]; then
+  path="$DOTFILES_DIR/$script"
+  if [[ -x "$path" ]]; then
     log "Running $script"
-    $DRY_RUN && echo "[dry-run] $DOTFILES_DIR/$script" || "$DOTFILES_DIR/$script"
+    $DRY_RUN && echo "[dry-run] $path" || "$path"
+  elif [[ -f "$path" ]]; then
+    warn "Script not executable: $script (run: chmod +x \"$path\")"
   else
-    warn "Script not found or not executable: $script"
+    warn "Script not found: $script"
   fi
 done
 

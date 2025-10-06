@@ -2,3 +2,4 @@ channels:
   - defaults
 env_prompt: ''
 auto_activate_base: false
+changeps1: false
