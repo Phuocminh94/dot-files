@@ -1,0 +1,34 @@
+# Converted from iTerm profile (Dark variant)
+
+[colors]
+foreground = "#51AE35"          # Foreground Color (Dark)
+background = "#020F01"          # Background Color (Dark)
+
+cursor_bg    = "#8092A1"        # Cursor Color (Dark)
+cursor_fg    = "#FFFFFF"        # Cursor Text Color (Dark)
+cursor_border= "#8092A1"
+
+selection_bg = "#D4FFC1"        # Selection Color (Dark)
+selection_fg = "#000000"
+
+ansi = [
+  "#001F0B",  # 0  Ansi 0 Color (Dark)
+  "#69DE44",  # 1  Ansi 1 Color (Dark)
+  "#69DF44",  # 2  Ansi 2 Color (Dark)
+  "#808080",  # 3  Ansi 3 Color (Dark)
+  "#60CD3F",  # 4  Ansi 4 Color (Dark)
+  "#61CD3F",  # 5  Ansi 5 Color (Dark)
+  "#60CC3E",  # 6  Ansi 6 Color (Dark)
+  "#FAFAFA",  # 7  Ansi 7 Color (Dark)
+]
+
+brights = [
+  "#051411",  # 8  Ansi 8 Color (Dark)
+  "#69DF44",  # 9  Ansi 9 Color (Dark)
+  "#69DE44",  # 10 Ansi 10 Color (Dark)
+  "#6BDF44",  # 11 Ansi 11 Color (Dark)
+  "#69DF44",  # 12 Ansi 12 Color (Dark)
+  "#69DE44",  # 13 Ansi 13 Color (Dark)
+  "#69DF45",  # 14 Ansi 14 Color (Dark)
+  "#FFFFFF",  # 15 Ansi 15 Color (Dark)
+]

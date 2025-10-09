@@ -23,7 +23,6 @@ kde_pkgs=(
   bluez bluez-utils                 # bluetooth core + CLI tools
   bluez-qt bluedevil kdeconnect     # KDE Bluetooth support (Qt bindings + tray/applet + phone integration)
   networkmanager plasma-nm          # network management daemon + KDE applet
-  kio-gdrive                        # google drive client
 )
 
 util_pkgs=(
@@ -32,6 +31,7 @@ util_pkgs=(
   openbsd-netcat
   starship
   ripgrep
+  wezterm
 )
 
 lang_pkgs=(
