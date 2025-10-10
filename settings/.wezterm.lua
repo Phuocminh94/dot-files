@@ -14,13 +14,13 @@ return {
 
     background = {
         {
-            source = {
+            source = {  -- image layer
                 File = home .. "/dotfiles/settings/wallpapers/matrix.jpg",
             },
             opacity = .5,
         },
         {
-            source = {
+            source = {  -- color layer (on top)
                 -- Color = "rgba(11, 21, 27, 0.95)",
                 Color = "rgba(1, 31, 12, 0.95)",
             },
@@ -34,16 +34,16 @@ return {
     window_padding = {
         left = "0.5cell",
         right = "0.5cell",
-        top = "0.1cell",
-        bottom = "0.1cell",
+        top = "0cell",
+        bottom = "0cell",
     },
-    -- 🌈 Thin border / frame
+    -- Thin border / frame
     window_frame = {
         border_left_width = "1.5px",
         border_right_width = "1.5px",
         border_bottom_height = "1.5px",
         border_top_height = "1.5px",
-        border_left_color = "#273F3E", -- Matrix green border
+        border_left_color = "#273F3E",
         border_right_color = "#273F3E",
         border_bottom_color = "#273F3E",
         border_top_color = "#273F3E",
