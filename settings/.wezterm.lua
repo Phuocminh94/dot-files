@@ -1,36 +1,52 @@
 local wezterm = require 'wezterm'
 local home = os.getenv("HOME")
 
+local is_macos = wezterm.target_triple:find("darwin") ~= nil
+local is_linux = wezterm.target_triple:find("linux") ~= nil
+
 return {
-  color_scheme = "MyMatrix",
-  font = wezterm.font_with_fallback { { family = 'VictorMono Nerd Font' } },
-  font_size = 16.0,
+    color_scheme = "MyMatrix",
+    font = wezterm.font_with_fallback { { family = 'VictorMono Nerd Font' } },
+    font_size = is_macos and 17.0 or 13.0,
 
-  text_background_opacity = 0.9,
-  macos_window_background_blur = 20,
+    text_background_opacity = 0.75,
+    macos_window_background_blur = 20,
 
-  window_decorations = "RESIZE",
-  enable_tab_bar = false,
-  window_padding = { top = 0, bottom = 0, left = 0, right = 0 },
-
-  background = {
-    -- 1️⃣ Base black layer
-    { source = { Color = 'rgba(11, 21, 27, 0.95)' } },
-
-    -- 2️⃣ Wallpaper layer
-    {
-      source = { File = home .. '/dotfiles/settings/wallpapers/matrix.jpg' },
-      opacity = 0.35,
-      hsb = { brightness = 0.2, saturation = 2, hue = 1 },
+    background = {
+        {
+            source = {
+                File = home .. "/dotfiles/settings/wallpapers/matrix.jpg",
+            },
+            opacity = .5,
+        },
+        {
+            source = {
+                -- Color = "rgba(11, 21, 27, 0.95)",
+                Color = "rgba(1, 31, 12, 0.95)",
+            },
+            height = "100%",
+            width = "100%",
+            opacity = .7,
+        },
     },
-
-    -- 3️⃣ custom dark-blue overlay (RGB 11,21,27)
-    -- This will subtly tint and darken the image
-    {
-      source = { Color = 'rgba(11, 21, 27, 1)' }, -- 👈 adjust opacity for strength
+    window_decorations = "RESIZE",
+    enable_tab_bar = false,
+    window_padding = {
+        left = "0.5cell",
+        right = "0.5cell",
+        top = "0.1cell",
+        bottom = "0.1cell",
     },
-
-  },
-
-  bold_brightens_ansi_colors = true,
+    -- 🌈 Thin border / frame
+    window_frame = {
+        border_left_width = "1.5px",
+        border_right_width = "1.5px",
+        border_bottom_height = "1.5px",
+        border_top_height = "1.5px",
+        border_left_color = "#273F3E", -- Matrix green border
+        border_right_color = "#273F3E",
+        border_bottom_color = "#273F3E",
+        border_top_color = "#273F3E",
+    },
+    bold_brightens_ansi_colors = true,
 }
